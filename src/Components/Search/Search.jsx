@@ -1,7 +1,5 @@
-import react from "react";
 import styles from "./search.module.css";
 import searchIcon from "../../assets/search-icon.png";
-import { useState } from "react";
 import { Autocomplete, TextField, Paper } from "@mui/material";
 import Tile from "../Tile/Tile";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
@@ -37,24 +35,15 @@ const customTheme = (outerTheme) =>
             },
             [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: "var(--TextField-brandBorderFocusedColor)",
-              
             },
-            
-            
           },
         },
       },
     },
   });
 
-export default function Search({ placeholder, data }) {
+function Search({ placeholder, data }) {
   const outer = useTheme();
-  const [val, setVal] = useState();
-
-  const changeHandler = (e) => {
-    setVal(e.target.value);
-    const res = data.filter((item) => item.title.includes(e.target.value));
-  };
 
   return (
     <>
@@ -63,7 +52,6 @@ export default function Search({ placeholder, data }) {
           sx={{
             "& .MuiAutocomplete-option": {
               color: "var(--color-black)",
-              padding: "0px",
             },
             "& .Mui-focused": {
               color: "var(--color-black)",
@@ -87,11 +75,12 @@ export default function Search({ placeholder, data }) {
               {children}
             </Paper>
           )}
-          className={styles.search}           
+          className={styles.search}
           freeSolo
-          id="free-solo-2-demo"
+          // id="free-solo-2-demo"
           disableClearable
           options={data}
+          getOptionLabel={(option) => option.title}
           renderOption={(props, option) => {
             return (
               <Tile
@@ -104,24 +93,17 @@ export default function Search({ placeholder, data }) {
           }}
           renderInput={(params) => (
             <ThemeProvider theme={customTheme(outer)}>
-              <TextField
-                {...params}
-                label={placeholder}
-                inputProps={{
-                  ...params.inputProps,
-                  type: "search",
-                }}
-                onChange={changeHandler}
-              />
+              <TextField {...params} placeholder={placeholder} />
             </ThemeProvider>
           )}
         />
+
         <button className={styles.searchButton}>
           <img src={searchIcon} alt="search-bar" />
-          {/* <SearchIcon/> */}
         </button>
-        {val ? <></> : null}
       </div>
     </>
   );
 }
+
+export default Search;
