@@ -1,0 +1,40 @@
+.wrapper {
+  width: 160px;
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  width: 160px;
+  height: 205px;
+  border-radius: 10px;
+  background-color: var(--color-white);
+}
+
+.card:hover {
+  cursor: pointer;
+  filter: brightness(50%);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  padding: 6px;
+  background-color: var(--color-white);
+
+  .chip {
+    background-color: var(--color-black);
+    color: white;
+  }
+}
+
+.titleWrapper {
+  margin-top: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
