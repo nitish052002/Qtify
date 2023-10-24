@@ -1,12 +1,15 @@
 import styles from "./Tile.module.css";
-function Tile({ songs, url, follows, album }) {
-  let s = [];
-  songs.forEach(({ artists }, index) => {
-    if (index < 2) {
-      s.push(artists);
-    }
-  });
-  let artists = s.flat().join(" ");
+function Tile({ songs, url, follows, album, artistsNames ,likes}) {
+  let ArtistOfAlbums = [];
+  songs &&
+    songs.forEach(({ artists }, index) => {
+      if (index < 2) {
+        ArtistOfAlbums.push(artists);
+      }
+    });
+  let artists = artistsNames
+    ? artistsNames.join(" ")
+    : ArtistOfAlbums.flat().join(" ");
 
   return (
     <div className={styles.wrapper}>
@@ -18,7 +21,7 @@ function Tile({ songs, url, follows, album }) {
           <p className={styles.artist}>{artists}</p>
         </div>
       </div>
-      <span>{follows} Follows</span>
+      {likes ? <span>{likes} Likes</span> : <span>{follows} Follows</span>}
     </div>
   );
 }

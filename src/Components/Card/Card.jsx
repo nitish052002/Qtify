@@ -6,7 +6,7 @@ import Tooltip from "@mui/material/Tooltip";
 const CardUI = ({ data }) => {
   const { image, follows, title, songs ,artists,likes} = data;
   return (
-    <Tooltip title={`${songs ? songs.length : artists} songs`} placement="top" arrow>
+    <Tooltip title={songs ? songs.length + " Songs " : ""} placement="top" arrow>
       <div className={styles.wrapper}>
         <div className={styles.card}>
           <img src={image} alt="albums" />

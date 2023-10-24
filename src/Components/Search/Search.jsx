@@ -4,6 +4,7 @@ import { Autocomplete, TextField, Paper } from "@mui/material";
 import Tile from "../Tile/Tile";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
+import { useEffect, useState } from "react";
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -44,6 +45,40 @@ const customTheme = (outerTheme) =>
 
 function Search({ placeholder, data }) {
   const outer = useTheme();
+  const [val, setVal] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [timeOut, updateTimeOut] = useState();
+
+  const LIST__OF__SONGS = data.map((song) => song.songs).flat();
+
+  const FIND__SONGS = () => {
+    let songs = LIST__OF__SONGS.filter((song) => {
+     return song.title.toLowerCase().includes(val) || song.artists.join(" ").toLowerCase().includes(val)
+
+    }
+    );
+
+    !val ? setFilteredData([]) : setFilteredData(songs);
+  };
+
+  const DEBOUNCE__SEARCH = (value, t) => {
+    if (timeOut) {
+      clearTimeout(timeOut);
+    }
+    let time = setTimeout(() => {
+      setVal(value);
+    }, t);
+    updateTimeOut(time);
+  };
+
+  const inputChangeHandler = (e) => {
+    DEBOUNCE__SEARCH(e.target.value, 300);
+    console.log(LIST__OF__SONGS)
+  };
+
+  useEffect(() => {
+    FIND__SONGS();
+  }, [val]);
 
   return (
     <>
@@ -77,23 +112,29 @@ function Search({ placeholder, data }) {
           )}
           className={styles.search}
           freeSolo
-          // id="free-solo-2-demo"
           disableClearable
-          options={data}
+          options={filteredData.length ? filteredData : data}
           getOptionLabel={(option) => option.title}
           renderOption={(props, option) => {
             return (
               <Tile
+                key={option.id}
                 album={option.title}
                 follows={option.follows}
+                likes={option.likes}
                 url={option.image}
                 songs={option.songs}
+                artistsNames={option.artists}
               />
             );
           }}
           renderInput={(params) => (
             <ThemeProvider theme={customTheme(outer)}>
-              <TextField {...params} placeholder={placeholder} />
+              <TextField
+                {...params}
+                placeholder={placeholder}
+                onChange={inputChangeHandler}
+              />
             </ThemeProvider>
           )}
         />

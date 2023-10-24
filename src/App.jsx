@@ -1,15 +1,21 @@
 import Navbar from "./Components/Navbar/Navbar";
 import Hero from "./Components/Hero/Hero";
 import { useEffect, useState } from "react";
-import { fetchNewAlbums, fetchSongAlbums, fetchTopAlbums } from "./api/api";
+import {
+  queAndAns,
+  fetchNewAlbums,
+  fetchSongAlbums,
+  fetchTopAlbums,
+} from "./api/api";
 import Section from "./Components/Section/Section";
 import AccordionUI from "./Components/Accordian/AccordianUI";
- 
+
 export default function App() {
   const [topAlbumsData, setTopAlbumsData] = useState([]);
   const [newAlbumsData, setNewAlbumsData] = useState([]);
   const [songAlbumsData, setSongAlbumsData] = useState([]);
   const [filterSongAlbumsData, setFilterSongAlbumsData] = useState([]);
+  const [faq, setFaq] = useState([]);
 
   const [label, setLabel] = useState("all");
 
@@ -41,6 +47,15 @@ export default function App() {
     }
   };
 
+  const generateFaq = async () => {
+    try {
+      let data = await queAndAns();       
+      setFaq(data)
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const updateLabel = (label) => {
     setLabel(label);
   };
@@ -49,7 +64,8 @@ export default function App() {
     generateTopAlbumsData();
     generateNewAlbumsData();
     generateSongAlbumsData();
-    console.log()
+    generateFaq();
+    
   }, []);
 
   useEffect(() => {
@@ -60,19 +76,15 @@ export default function App() {
       if (label === "all") {
         generateSongAlbumsData();
       }
-      setFilterSongAlbumsData(filteredData);
-      console.log(filteredData)
+      setFilterSongAlbumsData(filteredData);       
     };
 
     filteredSongsByGener(label);
   }, [label]);
 
-
-
-
   return (
     <div>
-      <Navbar data={topAlbumsData}/>
+      <Navbar data={topAlbumsData}  />
       <Hero />
       <div>
         <Section data={topAlbumsData} type="albums" title="Top Albums" />
@@ -87,7 +99,7 @@ export default function App() {
         />
         <hr />
       </div>
-      <AccordionUI />
+      <AccordionUI faq={faq} />
     </div>
   );
 }

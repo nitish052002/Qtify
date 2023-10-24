@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// axios
 export const API__ENDPOINT = "https://qtify-backend-labs.crio.do";
 
 export const fetchTopAlbums = async () => {
@@ -12,7 +11,6 @@ export const fetchTopAlbums = async () => {
   }
 };
 
-
 export const fetchNewAlbums = async () => {
   try {
     let res = await axios.get(`${API__ENDPOINT}/albums/new`);
@@ -21,8 +19,6 @@ export const fetchNewAlbums = async () => {
     console.log(err);
   }
 };
-
-
 
 export const fetchSongAlbums = async () => {
   try {
@@ -33,5 +29,12 @@ export const fetchSongAlbums = async () => {
   }
 };
 
-
-
+export const queAndAns = async () => {
+  try {
+    let res = await axios.get(`${API__ENDPOINT}/faq`);
+    // console.log(res.data.data)
+    return res.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
