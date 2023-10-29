@@ -7,3 +7,15 @@
   gap: 30px;
   text-align: center;
 }
+
+@media screen and  (max-width:576px){
+  .hero {
+    flex-wrap: wrap-reverse;
+    margin-top: 13rem;
+    /* background-color: antiquewhite; */
+  }
+  .hero h1 {
+    margin-bottom: 1rem;
+  }
+   
+}

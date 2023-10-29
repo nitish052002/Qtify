@@ -83,7 +83,7 @@ export default function App() {
   }, [label]);
 
   return (
-    <div>
+    <div className="app">
       <Navbar data={topAlbumsData}  />
       <Hero />
       <div>

@@ -1,7 +1,8 @@
 .wrapper {
   display: grid;
-  gap: 20px;
-  grid-template-columns: auto auto auto auto auto auto auto auto;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
+ 
 }
 
 .header {
@@ -36,4 +37,31 @@
   display: flex;
   justify-content: center;
   padding: 6rem;
+}
+
+ /* ============ BREAKPOINTS ================================ */
+
+ @media screen and (min-width: 1250px) {
+  
+}
+/*  For Large Devices  */
+@media screen and (max-width: 992px) {
+  
+}
+
+/*  For Medium Devices Devices  */
+@media screen and (max-width: 768px) {
+    
+}
+
+ 
+@media screen and (max-width: 576px) {
+ 
+  
+}
+
+/*  For Small Devices Devices  */
+@media screen and (max-width: 350px) {
+
+  
 }

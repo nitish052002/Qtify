@@ -1,6 +1,6 @@
 import styles from "./hero.module.css";
 import heroImage from "../../assets/hero.png";
-// import
+ 
 function Hero() {
   return (
     <div className={styles.hero}>

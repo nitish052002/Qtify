@@ -19,7 +19,7 @@ const CardUI = ({ data }) => {
           </div>
         </div>
         <div className={styles.titleWrapper}>
-          <p>{title}</p>
+          <p className={styles.footerTitle}>{title}</p>
         </div>
       </div>
     </Tooltip>

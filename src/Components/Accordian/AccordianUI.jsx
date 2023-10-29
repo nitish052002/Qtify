@@ -4,25 +4,17 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import styles from "./Accordian.module.css";
- 
 
-export default function AccordionUI({faq}) {
-  
+export default function AccordionUI({ faq }) {
   return (
     <div className={styles.AccordionWrapper}>
-      <h1>FAQs</h1>
+      <h1 className={styles.faqTitle}>FAQs</h1>
       {faq.map(({ question, answer }) => {
         return (
           <Accordion
             key={question}
-            sx={{
-              width: "800px",
-              backgroundColor: "var(--color-black)",
-              border: "solid 1px var(--color-white)",
-              color: "var(--color-white)",
-              marginBottom: "20px",
-              borderRadius: "8px!important",
-            }}
+           
+            className={styles.accord}
           >
             <AccordionSummary
               expandIcon={
@@ -53,3 +45,5 @@ export default function AccordionUI({faq}) {
     </div>
   );
 }
+
+

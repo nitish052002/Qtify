@@ -5,6 +5,7 @@ import Tile from "../Tile/Tile";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { useEffect, useState } from "react";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -80,6 +81,8 @@ function Search({ placeholder, data }) {
     FIND__SONGS();
   }, [val]);
 
+
+  const matches = useMediaQuery('(max-width:576px)');
   return (
     <>
       <div className={styles.wrapper}>
@@ -91,21 +94,24 @@ function Search({ placeholder, data }) {
             "& .Mui-focused": {
               color: "var(--color-black)",
             },
-            width: "502px ",
+            width: `${matches ? "380px" : "502px"}`,
+            // width: `${matches ? "100px" : "502px"}`,
             backgroundColor: "white",
+             
           }}
+          ListboxProps={{className : "autoComplete"}}
           PaperComponent={({ children }) => (
             <Paper
-              style={{
-                overflow: "hidden",
+              style={{                 
                 border: "1px solid var(--color-primary)",
                 position: "relative",
-                right: "25%",
-                width: "800px",
+                right: "100%",
+                width: "800px",                 
                 background: "var(--color-black)",
                 top: "4px",
                 borderRadius: "0 0 4px 4px",
               }}
+              className={styles.paper}
             >
               {children}
             </Paper>

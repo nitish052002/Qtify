@@ -41,3 +41,11 @@ svg {
 hr {
   border: 1px solid var(--color-primary);
 }
+
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+  
+}
+
+ 

@@ -1,18 +1,70 @@
-.AccordionWrapper{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;     
+.AccordionWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 3rem  ;
 }
 
-.Accordion{
-background-color: var(--color-black);
-color: var(--color-white);
-border: 1px solid var(--color-white);
-border-radius: 10px;
+.Accordion {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-radius: 10px;
+}
+
+.faqTitle {
+  margin: 40px 0 40px 0;
+}
+
+.accord {
+  width: 800px;
+  background-color: var(--color-black) !important;
+  border: 1px solid var(--color-white) ;
+  color: var(--color-white) !important ;
+  margin-bottom: 20px;
+  border-radius: 8px !important;
 }
 
 
-h1 {
-    margin: 40px 0 40px 0;
-}
+ 
+
+
+ /* ============ BREAKPOINTS ================================ */
+
+ @media screen and (min-width: 1250px) {
+  
+ }
+ /*  For Large Devices  */
+ @media screen and (max-width: 992px) {
+    .accord{
+        width: 450px;
+    }
+    
+   
+ }
+ 
+ /*  For Medium Devices Devices  */
+ @media screen and (min-width: 768px) {
+    .accord{
+        width: 800px;
+    }
+    
+     
+ }
+ 
+  
+ @media screen and (max-width: 576px) {
+    .accord{
+        width: 450px;
+    }
+   
+ }
+ 
+ /*  For Small Devices Devices  */
+ @media screen and (max-width: 400px) {
+    .accord{
+        width: 330px;
+    }
+  
+ }
