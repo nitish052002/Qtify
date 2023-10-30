@@ -1,7 +1,22 @@
 .btn {
-    background-color: var(--color-black);
-    color: var(--color-white);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  text-wrap: nowrap;
+}
+
+@media screen and (max-width: 660px) {
+  .btn {
+    font-size: 11px;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .btn {
+    font-size: 1rem;
     border-radius: 12px;
-    padding: 10px 16px;
-    cursor: pointer;
+  }
 }

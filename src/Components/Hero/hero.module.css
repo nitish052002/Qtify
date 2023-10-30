@@ -11,8 +11,7 @@
 @media screen and  (max-width:576px){
   .hero {
     flex-wrap: wrap-reverse;
-    margin-top: 13rem;
-    /* background-color: antiquewhite; */
+    margin-top: 13rem; 
   }
   .hero h1 {
     margin-bottom: 1rem;

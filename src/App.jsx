@@ -1,14 +1,14 @@
 import Navbar from "./Components/Navbar/Navbar";
 import Hero from "./Components/Hero/Hero";
 import { useEffect, useState } from "react";
+import Section from "./Components/Section/Section";
+import AccordionUI from "./Components/Accordian/AccordianUI";
 import {
   queAndAns,
   fetchNewAlbums,
   fetchSongAlbums,
   fetchTopAlbums,
 } from "./api/api";
-import Section from "./Components/Section/Section";
-import AccordionUI from "./Components/Accordian/AccordianUI";
 
 export default function App() {
   const [topAlbumsData, setTopAlbumsData] = useState([]);
@@ -49,8 +49,8 @@ export default function App() {
 
   const generateFaq = async () => {
     try {
-      let data = await queAndAns();       
-      setFaq(data)
+      let data = await queAndAns();
+      setFaq(data);
     } catch (e) {
       console.log(e);
     }
@@ -65,8 +65,12 @@ export default function App() {
     generateNewAlbumsData();
     generateSongAlbumsData();
     generateFaq();
-    
   }, []);
+
+
+
+
+  
 
   useEffect(() => {
     const filteredSongsByGener = (label) => {
@@ -76,7 +80,7 @@ export default function App() {
       if (label === "all") {
         generateSongAlbumsData();
       }
-      setFilterSongAlbumsData(filteredData);       
+      setFilterSongAlbumsData(filteredData);
     };
 
     filteredSongsByGener(label);
@@ -84,7 +88,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Navbar data={topAlbumsData}  />
+      <Navbar data={topAlbumsData} />
       <Hero />
       <div>
         <Section data={topAlbumsData} type="albums" title="Top Albums" />

@@ -4,8 +4,7 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import CarouselLeftNavigation from "./CarouselLeftNavigation";
 import CarouselRightNavigation from "./CarouselRightNavigation";
-import "swiper/css"
-// 53
+import "swiper/css";
 
 const Controls = ({ data }) => {
   const swiper = useSwiper();
@@ -19,8 +18,8 @@ const Controls = ({ data }) => {
 function Carousel({ data, renderComponent }) {
   return (
     <div className={styles.wrapper}>
-      <Swiper   
-        style={{padding:"0px 10px"}}     
+      <Swiper
+        style={{ padding: "0px 10px" }}
         initialSlide={0}
         modules={[Navigation]}
         slidespreview={"auto"}
@@ -31,8 +30,7 @@ function Carousel({ data, renderComponent }) {
         <CarouselLeftNavigation />
         <CarouselRightNavigation />
         {data.map((item) => (
-           
-          <SwiperSlide  key={item.title}>{renderComponent(item)}</SwiperSlide>
+          <SwiperSlide key={item.title}>{renderComponent(item)}</SwiperSlide>
         ))}
       </Swiper>
     </div>

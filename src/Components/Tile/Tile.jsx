@@ -1,5 +1,5 @@
 import styles from "./Tile.module.css";
-function Tile({ songs, url, follows, album, artistsNames ,likes}) {
+function Tile({ songs, url, follows, album, artistsNames, likes }) {
   let ArtistOfAlbums = [];
   songs &&
     songs.forEach(({ artists }, index) => {
@@ -18,10 +18,16 @@ function Tile({ songs, url, follows, album, artistsNames ,likes}) {
         <div className={styles.content}>
           <p>{album}</p>
 
-          <p className={styles.artist}>{artists}</p>
+          <p className={styles.artist}>
+            {artists.slice(0, artists.length - 30)}
+          </p>
         </div>
       </div>
-      {likes ? <span>{likes} Likes</span> : <span>{follows} Follows</span>}
+      {likes ? (
+        <span className={styles.title}>{likes} Likes</span>
+      ) : (
+        <span className={styles.title}>{follows} Follows</span>
+      )}
     </div>
   );
 }

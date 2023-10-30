@@ -6,8 +6,7 @@ import Box from "@mui/material/Box";
 export default function NavigationTab({ updateLabel }) {
   const [value, setValue] = React.useState("all");
 
-  const handler = (event, label) => {
-    console.log(event)
+  const handler = (event, label) => {    
     setValue(label);
     updateLabel(label);
   };

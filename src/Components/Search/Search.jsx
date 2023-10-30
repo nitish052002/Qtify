@@ -5,7 +5,9 @@ import Tile from "../Tile/Tile";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { useEffect, useState } from "react";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+// ===================== OVERIDING CSS OF MUI INPUT ==============================================
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -22,6 +24,7 @@ const customTheme = (outerTheme) =>
             "& label.Mui-focused": {
               color: "var(--TextField-brandBorderFocusedColor)",
             },
+            padding: "0 11px",
           },
         },
       },
@@ -30,6 +33,10 @@ const customTheme = (outerTheme) =>
           notchedOutline: {
             borderColor: "var(--TextField-brandBorderColor)",
             padding: "0px",
+            backgroundImage: `url(${searchIcon})`,
+            backgroundPosition: "right , left top ",
+            backgroundRepeat: "no-repeat",
+            padding: "12px 20px 12px 40px",
           },
           root: {
             [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
@@ -54,11 +61,11 @@ function Search({ placeholder, data }) {
 
   const FIND__SONGS = () => {
     let songs = LIST__OF__SONGS.filter((song) => {
-     return song.title.toLowerCase().includes(val) || song.artists.join(" ").toLowerCase().includes(val)
-
-    }
-    );
-
+      return (
+        song.title.toLowerCase().includes(val) ||
+        song.artists.join(" ").toLowerCase().includes(val)
+      );
+    });
     !val ? setFilteredData([]) : setFilteredData(songs);
   };
 
@@ -74,15 +81,15 @@ function Search({ placeholder, data }) {
 
   const inputChangeHandler = (e) => {
     DEBOUNCE__SEARCH(e.target.value, 300);
-    console.log(LIST__OF__SONGS)
+    console.log(LIST__OF__SONGS);
   };
 
   useEffect(() => {
     FIND__SONGS();
   }, [val]);
 
+  const SM__DEVICE = useMediaQuery("(max-width:600px)");
 
-  const matches = useMediaQuery('(max-width:576px)');
   return (
     <>
       <div className={styles.wrapper}>
@@ -94,27 +101,13 @@ function Search({ placeholder, data }) {
             "& .Mui-focused": {
               color: "var(--color-black)",
             },
-            width: `${matches ? "380px" : "502px"}`,
-            // width: `${matches ? "100px" : "502px"}`,
+            margin: "0 auto",
+            width: `${SM__DEVICE ? "100%" : "502px"}`,
             backgroundColor: "white",
-             
           }}
-          ListboxProps={{className : "autoComplete"}}
+          ListboxProps={{ className: "autoComplete" }}
           PaperComponent={({ children }) => (
-            <Paper
-              style={{                 
-                border: "1px solid var(--color-primary)",
-                position: "relative",
-                right: "100%",
-                width: "800px",                 
-                background: "var(--color-black)",
-                top: "4px",
-                borderRadius: "0 0 4px 4px",
-              }}
-              className={styles.paper}
-            >
-              {children}
-            </Paper>
+            <Paper className={styles.paper}>{children}</Paper>
           )}
           className={styles.search}
           freeSolo
@@ -144,10 +137,6 @@ function Search({ placeholder, data }) {
             </ThemeProvider>
           )}
         />
-
-        <button className={styles.searchButton}>
-          <img src={searchIcon} alt="search-bar" />
-        </button>
       </div>
     </>
   );

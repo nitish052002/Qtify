@@ -2,7 +2,6 @@
   display: grid;
   grid-gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
- 
 }
 
 .header {
@@ -18,17 +17,8 @@
 
 .cardWrapper {
   margin-top: 18px;
-  animation: abc 4s ease-in-out 3s 1 normal;
 }
 
-@keyframes abc {
-  0% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(10px);
-  }
-}
 .boundary {
   margin: 20px 20px 15px 20px;
 }
@@ -39,29 +29,10 @@
   padding: 6rem;
 }
 
- /* ============ BREAKPOINTS ================================ */
+/* ============ BREAKPOINTS ================================ */
 
- @media screen and (min-width: 1250px) {
-  
-}
-/*  For Large Devices  */
-@media screen and (max-width: 992px) {
-  
-}
-
-/*  For Medium Devices Devices  */
-@media screen and (max-width: 768px) {
-    
-}
-
- 
-@media screen and (max-width: 576px) {
- 
-  
-}
-
-/*  For Small Devices Devices  */
-@media screen and (max-width: 350px) {
-
-  
+@media screen and (min-width: 992px) {
+  .wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
 }
