@@ -19,7 +19,7 @@ function Tile({ songs, url, follows, album, artistsNames, likes }) {
           <p>{album}</p>
 
           <p className={styles.artist}>
-            {artists.slice(0, artists.length - 30)}
+            {artists}
           </p>
         </div>
       </div>
